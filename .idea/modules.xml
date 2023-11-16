@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/backend_spotify.iml" filepath="$PROJECT_DIR$/.idea/backend_spotify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spotify_backend/demo.iml" filepath="$PROJECT_DIR$/Spotify_backend/demo.iml" />
+    </modules>
+  </component>
+</project>

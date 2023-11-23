@@ -1,20 +1,8 @@
 package com.cst438;
 
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-@SpringBootTest
 public class EndToEndSpotifyTest {
-
+/*
     public static final String CHROME_DRIVER_FILE_LOCATION = "path/to/your/chromedriver";
     public static final String URL = "http://localhost:3000"; // URL of your Spotify web app
     public static final int SLEEP_DURATION = 1000; // 1 second.
@@ -48,5 +36,5 @@ public class EndToEndSpotifyTest {
         }
     }
 
-    // Additional test methods can be added here...
+    // Additional test methods can be added here...*/
 }

@@ -4,10 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -18,10 +16,10 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/").permitAll()
-                                .anyRequest().authenticated()
+                                //.antMatchers("/").permitAll()  // Permit all access to the root URL
+                                .anyRequest().authenticated()  // Require authentication for any other request
                 )
-                .oauth2Login(Customizer.withDefaults());
+                .oauth2Login(Customizer.withDefaults());  // Configure OAuth2 login
 
         return http.build();
     }

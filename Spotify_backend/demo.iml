@@ -61,5 +61,19 @@
     <orderEntry type="library" name="Maven: com.nimbusds:lang-tag:1.7" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-oauth2-jose:6.1.5" level="project" />
     <orderEntry type="library" name="Maven: com.nimbusds:nimbus-jose-jwt:9.24.4" level="project" />
+    <orderEntry type="library" name="Maven: com.uber.artist:artist:0.4.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.android.tools.build:gradle:3.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.8.22" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.uber.artist:artist-core:0.4.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup:javapoet:1.9.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup:kotlinpoet:1.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.8.22" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.google.googlejavaformat:google-java-format:1.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.google.guava:guava:19.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.google.errorprone:javac-shaded:9-dev-r4023-3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.uber.artist:artist-api:0.4.7" level="project" />
   </component>
 </module>

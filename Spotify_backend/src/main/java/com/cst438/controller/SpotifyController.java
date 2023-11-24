@@ -1,5 +1,6 @@
 package com.cst438.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -14,6 +15,7 @@ public class SpotifyController {
 
     private final SpotifyService spotifyService;
 
+    @Autowired
     public SpotifyController(SpotifyService spotifyService) {
         this.spotifyService = spotifyService;
     }
@@ -24,5 +26,6 @@ public class SpotifyController {
         return ResponseEntity.ok(userProfile);
     }
 }
+
 
 

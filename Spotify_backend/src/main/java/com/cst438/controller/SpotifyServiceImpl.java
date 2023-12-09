@@ -1,15 +1,12 @@
 package com.cst438.controller;
 
 
-import com.cst438.domain.SearchResponse;
-import com.cst438.domain.TrackDTO;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.http.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class SpotifyServiceImpl implements SpotifyService {

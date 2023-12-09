@@ -1,7 +1,8 @@
 package com.cst438.controller;
 
-import javax.sound.midi.Track;
 import java.util.List;
+
+import javax.sound.midi.Track;
 
 public interface SearchService {
     List<Track> searchTracks(String query, String accessToken);

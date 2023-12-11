@@ -1,17 +1,19 @@
 package com.cst438;
 
-
-import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class EndToEndSpotifyTest {
 
-    public static final String CHROME_DRIVER_FILE_LOCATION = "path/to/chromedriver.exe";
+    public static final String CHROME_DRIVER_FILE_LOCATION = "C:/chromeDriver_win32/chromedriver.exe";
     public static final String URL = "http://localhost:3000"; // Adjust to your application's URL
 
     @Test
@@ -24,14 +26,16 @@ public class EndToEndSpotifyTest {
             driver.get(URL);
             Thread.sleep(1000); // Wait for the page to load
 
-            // Add steps to interact with your web application
-            // For example, login (if not using OAuth), navigate to user profile page, etc.
+            // Assuming there's a button/link to navigate to the profile page
+            WebElement profileLink = driver.findElement(By.id("profileLink"));
+            profileLink.click();
+            Thread.sleep(1000); // Wait for navigation
 
-            // Check for certain elements to verify successful interaction
-            // Example: WebElement profileElement = driver.findElement(By.id("profileElementId"));
-            // assertNotNull(profileElement, "Profile element not found");
+            // Check for a specific element on the profile page
+            WebElement profileElement = driver.findElement(By.id("profileElement"));
+            assertNotNull(profileElement, "Profile element not found");
 
-            // More interactions and assertions as needed for your test scenario
+            // Additional assertions and interactions...
 
         } catch (Exception ex) {
             throw ex;

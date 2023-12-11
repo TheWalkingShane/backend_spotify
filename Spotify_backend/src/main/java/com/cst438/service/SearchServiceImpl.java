@@ -30,8 +30,7 @@ public class SearchServiceImpl implements SearchService {
         ResponseEntity<SpotifySearchResponse> response = restTemplate.exchange(
                 url, HttpMethod.GET, entity, SpotifySearchResponse.class);
 
-        // Assuming SpotifySearchResponse has a structure that includes a list of track items
-        // and that these items can be directly mapped to TrackDTO objects
+
         return null;
     }
 

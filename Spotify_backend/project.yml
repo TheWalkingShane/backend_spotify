@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "cst438 final project"
+Resources:
+  Cloud9Role:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ec2.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      RoleName: cst438-cloud9-containers-role
+  Cloud9Profile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: cst438-cloud9-containers-role
+      Path: "/"
+      Roles:
+        - !Ref Cloud9Role

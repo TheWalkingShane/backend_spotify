@@ -27,13 +27,19 @@ public class EndToEndSpotifyTest {
             Thread.sleep(1000); // Wait for the page to load
 
             // Assuming there's a button/link to navigate to the profile page
-            WebElement profileLink = driver.findElement(By.id("profileLink"));
+            WebElement profileLink = driver.findElement(By.id("profileLink")); // replace profileLink
             profileLink.click();
             Thread.sleep(1000); // Wait for navigation
 
             // Check for a specific element on the profile page
-            WebElement profileElement = driver.findElement(By.id("profileElement"));
+            WebElement profileElement = driver.findElement(By.id("profileElement")); //replace profileElement
             assertNotNull(profileElement, "Profile element not found");
+            
+            
+            WebElement displayName = driver.findElement(By.id("displayName")); // replace displayName
+            assertNotNull(displayName, "Display name not found");
+            assertFalse(displayName.getText().isEmpty(), "Display name should not be empty");
+            
 
            
 

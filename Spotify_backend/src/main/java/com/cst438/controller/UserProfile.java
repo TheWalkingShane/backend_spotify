@@ -5,6 +5,7 @@ public class UserProfile {
     private String username;
     private String access_token;
     private String refresh_token;
+    private String displayName; // Add the displayName field
     private int expires_in;	// Milliseconds since computer time started.
 
     // Constructor
@@ -52,6 +53,14 @@ public class UserProfile {
 	public void setExpires_in(int expires_in) {
 		this.expires_in = expires_in;
 	}
+
+    public String getDisplayName() { // Getter for displayName
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) { // Setter for displayName
+        this.displayName = displayName;
+    }
 
     
 }

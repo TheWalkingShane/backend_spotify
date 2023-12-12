@@ -1,6 +1,7 @@
 package com.cst438;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -66,10 +67,8 @@ public class JunitTestSpotify {
         String accessToken = "testToken";
         String url = "https://api.spotify.com/v1/me";
         UserProfile mockResponse = new UserProfile();
-
         mockResponse.setId("12345");
-        mockResponse.setDisplayName("Test User");
-
+        mockResponse.setDisplayName("Test User"); // Assuming you have a setter for displayName.
 
         when(restTemplate.exchange(eq(url), eq(HttpMethod.GET), any(HttpEntity.class), eq(UserProfile.class)))
                 .thenReturn(new ResponseEntity<>(mockResponse, HttpStatus.OK));
@@ -79,8 +78,10 @@ public class JunitTestSpotify {
 
         // Assert
         assertNotNull(result);
-        // Add more assertions to validate the properties of UserProfile
+        assertEquals("12345", result.getId(), "The user ID should match the mock response");
+        assertEquals("Test User", result.getDisplayName(), "The display name should match the mock response");
     }
+
 
     // ====================== SpotifyController Tests ======================
 
@@ -89,14 +90,18 @@ public class JunitTestSpotify {
         // Arrange
         String accessToken = "testToken";
         UserProfile mockProfile = new UserProfile();
+        mockProfile.setId("12345");
+        mockProfile.setDisplayName("Test User"); // Assuming setter method exists.
+
         when(spotifyService.getUserProfile(accessToken)).thenReturn(mockProfile);
 
         // Act & Assert
         mockMvc.perform(get("/spotify/user-profile").param("accessToken", accessToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(mockProfile.getId()));
-        // Add more expectations based on the UserProfile structure
+                .andExpect(jsonPath("$.id").value("12345"))
+                .andExpect(jsonPath("$.displayName").value("Test User"));
     }
+
 
     // ====================== SearchController Tests ======================
 
@@ -106,19 +111,25 @@ public class JunitTestSpotify {
         String query = "testQuery";
         String accessToken = "testToken";
         List<TrackDTO> mockSearchResults = List.of(
-                new TrackDTO("trackId1", "Track Name 1", "Artist Name 1", "Album Name 1"),
-                new TrackDTO("trackId2", "Track Name 2", "Artist Name 2", "Album Name 2")
+            new TrackDTO("trackId1", "Track Name 1", "Artist Name 1", "Album Name 1"),
+            new TrackDTO("trackId2", "Track Name 2", "Artist Name 2", "Album Name 2")
         );
         doReturn(mockSearchResults).when(searchService).searchTracks(anyString(), anyString());
-
 
         // Act & Assert
         mockMvc.perform(get("/api/search").param("query", query).param("accessToken", accessToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value(mockSearchResults.get(0).name()))
-                .andExpect(jsonPath("$[1].name").value(mockSearchResults.get(1).name()));
-        // Add more assertions as needed
+                .andExpect(jsonPath("$[0].id").value("trackId1"))
+                .andExpect(jsonPath("$[0].name").value("Track Name 1"))
+                .andExpect(jsonPath("$[0].artistNames").value("Artist Name 1"))
+                .andExpect(jsonPath("$[0].albumName").value("Album Name 1"))
+                // Add more assertions for the second track
+                .andExpect(jsonPath("$[1].id").value("trackId2"))
+                .andExpect(jsonPath("$[1].name").value("Track Name 2"))
+                // And so on for other fields
+                ;
     }
+
 
 
     // Additional tests for other functionalities can be added here

@@ -30,12 +30,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
 import com.cst438.controller.SearchController;
-import com.cst438.controller.SearchService;
 import com.cst438.controller.SpotifyController;
 import com.cst438.controller.SpotifyService;
 import com.cst438.controller.SpotifyServiceImpl;
 import com.cst438.controller.UserProfile;
 import com.cst438.domain.TrackDTO;
+import com.cst438.service.SearchService;
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest({SpotifyController.class, SearchController.class})

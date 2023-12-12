@@ -1,13 +1,12 @@
 package com.cst438.controller;
 
 import com.cst438.domain.TrackDTO;
+import com.cst438.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import javax.sound.midi.Track;
 
 @RestController
 @RequestMapping("/api/search")
@@ -21,13 +20,13 @@ public class SearchController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Track>> searchTracks(@RequestParam String query, @RequestParam String accessToken) {
-        List<Track> trackDTOs = searchService.searchTracks(query, accessToken);
+    public ResponseEntity<List<TrackDTO>> searchTracks(@RequestParam String query, @RequestHeader("Authorization") String accessToken) {
+        List<TrackDTO> trackDTOs = searchService.searchTracks(query, accessToken);
         return ResponseEntity.ok(trackDTOs);
     }
 
     @PostMapping
-    public ResponseEntity<?> addTrack(@RequestBody TrackDTO trackDTO, @RequestParam String accessToken) {
+    public ResponseEntity<?> addTrack(@RequestBody TrackDTO trackDTO, @RequestHeader("Authorization") String accessToken) {
         boolean isAdded = searchService.addTrack(trackDTO, accessToken);
         if (isAdded) {
             return ResponseEntity.ok().build();
@@ -37,7 +36,7 @@ public class SearchController {
     }
 
     @DeleteMapping("/{trackId}")
-    public ResponseEntity<?> deleteTrack(@PathVariable String trackId, @RequestParam String accessToken) {
+    public ResponseEntity<?> deleteTrack(@PathVariable String trackId, @RequestHeader("Authorization") String accessToken) {
         boolean isDeleted = searchService.deleteTrack(trackId, accessToken);
         if (isDeleted) {
             return ResponseEntity.ok().build();
@@ -47,7 +46,7 @@ public class SearchController {
     }
 
     @PutMapping("/{trackId}")
-    public ResponseEntity<?> updateTrack(@PathVariable String trackId, @RequestBody TrackDTO trackDTO, @RequestParam String accessToken) {
+    public ResponseEntity<?> updateTrack(@PathVariable String trackId, @RequestBody TrackDTO trackDTO, @RequestHeader("Authorization") String accessToken) {
         boolean isUpdated = searchService.updateTrack(trackId, trackDTO, accessToken);
         if (isUpdated) {
             return ResponseEntity.ok().build();
@@ -58,3 +57,4 @@ public class SearchController {
 
     // Additional methods for other functionalities can be added here
 }
+

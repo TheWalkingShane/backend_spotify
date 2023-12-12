@@ -1,6 +1,5 @@
 package com.cst438.service;
 
-import com.cst438.controller.SearchService;
 import com.cst438.controller.SpotifySearchResponse;
 import com.cst438.domain.TrackDTO;
 import org.springframework.http.*;
@@ -8,8 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-
-import javax.sound.midi.Track;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -17,23 +15,29 @@ public class SearchServiceImpl implements SearchService {
     private final RestTemplate restTemplate;
 
     public SearchServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = new RestTemplate();
+        this.restTemplate = restTemplate;
     }
 
     @Override
-    public List<Track> searchTracks(String query, String accessToken) {
+    public List<TrackDTO> searchTracks(String query, String accessToken) {
         String url = "https://api.spotify.com/v1/search?q=" + query + "&type=track";
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
         HttpEntity<?> entity = new HttpEntity<>(headers);
-        
+
         ResponseEntity<SpotifySearchResponse> response = restTemplate.exchange(
                 url, HttpMethod.GET, entity, SpotifySearchResponse.class);
 
 
-        return null;
-    }
+        return response.getBody().getTracks().getItems().stream()
+        	    .map(item -> new TrackDTO(
+        	        item.getId(), 
+        	        item.getName(), 
+        	        item.getArtists().stream().map(SpotifySearchResponse.SpotifyTrackItem.SpotifyArtist::getName).collect(Collectors.joining(", ")), 
+        	        item.getAlbum().getName()))
+        	    .collect(Collectors.toList());
 
+    }
 
     @Override
     public boolean addTrack(TrackDTO trackDTO, String accessToken) {
@@ -41,7 +45,7 @@ public class SearchServiceImpl implements SearchService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(accessToken);
-        String trackIdJson = "{\"ids\": [\"" + trackDTO + "\"]}";
+        String trackIdJson = "{\"ids\": [\"" + trackDTO.getId() + "\"]}";
         HttpEntity<String> entity = new HttpEntity<>(trackIdJson, headers);
         ResponseEntity<?> response = restTemplate.postForEntity(url, entity, Void.class);
 
@@ -60,13 +64,13 @@ public class SearchServiceImpl implements SearchService {
         return response.getStatusCode().is2xxSuccessful();
     }
 
-	@Override
-	public boolean updateTrack(String trackId, TrackDTO trackDTO, String accessToken) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+    @Override
+    public boolean updateTrack(String trackId, TrackDTO trackDTO, String accessToken) {
+        // Implement if updating tracks is supported and required
+        return false;
+    }
 
     // Additional methods and logic as needed
 }
+
 

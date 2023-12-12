@@ -1,16 +1,13 @@
-package com.cst438.controller;
-
-import java.util.List;
-
-import javax.sound.midi.Track;
+package com.cst438.service;  // Adjust the package if necessary
 
 import com.cst438.domain.TrackDTO;
+import java.util.List;
 
 public interface SearchService {
-    List<Track> searchTracks(String query, String accessToken);    
+    List<TrackDTO> searchTracks(String query, String accessToken);
     boolean addTrack(TrackDTO trackDTO, String accessToken);
     boolean deleteTrack(String trackId, String accessToken);
     boolean updateTrack(String trackId, TrackDTO trackDTO, String accessToken);
     
-    // You can add more methods for different types of searches, like albums, artists, etc.
+    // Additional methods for other search types can be added here
 }

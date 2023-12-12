@@ -1,11 +1,9 @@
 package com.cst438.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/spotify")
@@ -19,11 +17,17 @@ public class SpotifyController {
     }
 
     @GetMapping("/user-profile")
-    public ResponseEntity<UserProfile> getUserProfile(@RequestParam String accessToken) {
-        UserProfile userProfile = spotifyService.getUserProfile(accessToken);
-        return ResponseEntity.ok(userProfile);
+    public ResponseEntity<UserProfile> getUserProfile(@RequestHeader("Authorization") String accessToken) {
+        try {
+            UserProfile userProfile = spotifyService.getUserProfile(accessToken);
+            return ResponseEntity.ok(userProfile);
+        } catch (Exception e) {
+            // Handle exceptions like invalid token, service unavailability, etc.
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Consider a more specific error handling strategy
+        }
     }
 }
+
 
 
 

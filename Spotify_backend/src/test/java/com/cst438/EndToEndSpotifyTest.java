@@ -35,7 +35,7 @@ public class EndToEndSpotifyTest {
             WebElement profileElement = driver.findElement(By.id("profileElement"));
             assertNotNull(profileElement, "Profile element not found");
 
-            // Additional assertions and interactions...
+           
 
         } catch (Exception ex) {
             throw ex;

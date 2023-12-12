@@ -91,6 +91,14 @@
 		</dependency>
 		<!-- end selenium -->
 		
+		
+		<dependency>
+		    <groupId>io.github.cdimascio</groupId>
+		    <artifactId>dotenv-java</artifactId>
+		    <version>2.2.0</version>
+		</dependency>
+
+		
 	</dependencies>
 
 	<build>

@@ -2,9 +2,10 @@ package com.cst438.controller;
 
 public class UserProfile {
     private String id;
-    private String displayName;
-    private String email;
-    private String country;
+    private String username;
+    private String access_token;
+    private String refresh_token;
+    private int expires_in;	// Milliseconds since computer time started.
 
     // Constructor
     public UserProfile() {
@@ -20,30 +21,38 @@ public class UserProfile {
         this.id = id;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getAccess_token() {
+		return access_token;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public String getRefresh_token() {
+		return refresh_token;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public void setRefresh_token(String refresh_token) {
+		this.refresh_token = refresh_token;
+	}
 
-    // You can add more fields and corresponding getters/setters as needed
+	public int getExpires_in() {
+		return expires_in;
+	}
+
+	public void setExpires_in(int expires_in) {
+		this.expires_in = expires_in;
+	}
+
+    
 }
 

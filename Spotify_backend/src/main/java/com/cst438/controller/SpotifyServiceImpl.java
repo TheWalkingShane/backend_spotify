@@ -1,12 +1,12 @@
 package com.cst438.controller;
 
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.cst438.domain.TrackDTO;
+
+import java.util.List;
 
 @Service
 public class SpotifyServiceImpl implements SpotifyService {
@@ -16,7 +16,6 @@ public class SpotifyServiceImpl implements SpotifyService {
     public SpotifyServiceImpl() {
         this.restTemplate = new RestTemplate();
     }
-
 
     @Override
     public UserProfile getUserProfile(String accessToken) {
@@ -30,26 +29,28 @@ public class SpotifyServiceImpl implements SpotifyService {
 
         return response.getBody();
     }
-/*    @Override
+
     public List<TrackDTO> searchTracks(String query, String accessToken) {
-        try {
-            String url = "https://api.spotify.com/v1/search?q=" + query + "&type=track";
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(accessToken);
-            HttpEntity<?> entity = new HttpEntity<>(headers);
+        // Implement search logic
+        // Return List<TrackDTO>
+        return null;
+    }
 
-            ResponseEntity<SearchResponse> response = restTemplate.exchange(
-                    url, HttpMethod.GET, entity, SearchResponse.class);
+    public boolean addTrack(TrackDTO trackDTO, String accessToken) {
+        // Implement logic to add a track
+        return false;
+    }
 
-            return response.getBody().getTracks().getItems().stream() // still having errors
-                    .map(track -> new TrackDTO(track.getId(), track.getName(), ...)) // Map other necessary fields
-                    .collect(Collectors.toList());
-        } catch (HttpClientErrorException e) {
-            // Handle error scenarios, like unauthorized access or bad requests
-            throw new RuntimeException("Error fetching tracks: " + e.getMessage());
-        }
-    }*/
+    public boolean deleteTrack(String trackId, String accessToken) {
+        // Implement logic to delete a track
+        return false;
+    }
 
+    public boolean updateTrack(String trackId, TrackDTO trackDTO, String accessToken) {
+        // Implement logic to update a track
+        return false;
+    }
 }
+
 
 

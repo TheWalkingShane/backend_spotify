@@ -1,0 +1,10 @@
+com\cst438\domain\SpotifyUserRepository.class
+com\cst438\SpotifyApplication.class
+com\cst438\controller\UserProfileController.class
+com\cst438\domain\UserProfile.class
+com\cst438\domain\SpotifyUser.class
+com\cst438\controller\SecurityConfig.class
+com\cst438\controller\EndpointController.class
+com\cst438\domain\UserProfileDTO.class
+com\cst438\domain\SpotifyUserDTO.class
+com\cst438\domain\UserRepository.class

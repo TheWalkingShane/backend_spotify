@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,4 +75,28 @@ public class UserProfileController {
 		
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not find user with that ID");
 	}
+	
+    @DeleteMapping("/profile/remove")
+	public UserProfileDTO deleteUserProfile(@RequestParam("user_id") String user_id, 
+			@RequestParam("access_token") String access_token, 
+			@RequestParam("refresh_token") String refresh_token, 
+			@RequestParam("expires_in") int expires_in) {
+    	
+		UserProfile user = userRepository.findByUsername(user_id);
+		
+		if (user != null) { // sets the user_id to null so when someone needs to create an account they can use null slot
+			user.deleteUsername(user_id);
+			user.setAccess_token(access_token);
+			user.setRefresh_token(refresh_token);
+			user.setExpires_in(expires_in);
+			UserProfileDTO userDTO = new UserProfileDTO(user_id, access_token, refresh_token, expires_in);
+			userRepository.save(user);
+			return userDTO;
+		}
+		
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not remove user with that ID");
+	}
+	
+	
+	
 }

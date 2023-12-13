@@ -61,6 +61,10 @@ public class UserProfile {
 	public void setExpires_in(int expires_in) {
 		this.expires_in = expires_in;
 	}
+	
+	public void deleteUsername(String username) {
+		this.username = null;
+	}
 
     
 }

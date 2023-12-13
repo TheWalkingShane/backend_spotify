@@ -16,10 +16,10 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                //.antMatchers("/").permitAll()  // Permit all access to the root URL
-                                .anyRequest().authenticated()  // Require authentication for any other request
-                )
-                .oauth2Login(Customizer.withDefaults());  // Configure OAuth2 login
+                                .antMatchers("/").permitAll());  // Permit all access to the root URL
+//                                .anyRequest().authenticated()  // Require authentication for any other request
+                
+//                .oauth2Login(Customizer.withDefaults());  // Configure OAuth2 login
 
         return http.build();
     }

@@ -1,7 +1,16 @@
-package com.cst438.controller;
+package com.cst438.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class UserProfile {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+	
     private String username;
     private String access_token;
     private String refresh_token;
@@ -9,7 +18,7 @@ public class UserProfile {
 
     // Constructor
     public UserProfile() {
-        // Default constructor
+        super();
     }
 
     // Getters and Setters

@@ -1,4 +1,4 @@
-package com.cst438.controller;
+package com.cst438.domain;
 
 import org.springframework.data.repository.CrudRepository;
 

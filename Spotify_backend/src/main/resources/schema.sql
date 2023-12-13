@@ -1,7 +1,7 @@
 create table SpotifyUser (
 	access_token varchar(50) not null,
     refresh_token varchar(50) not null,
-    expires int not null
+    expires int not null,
     
     primary key(access_token, refresh_token)
 );
@@ -16,5 +16,3 @@ create table UserContext (
 	primary key(user_id),
     foreign key(access_token, refresh_token, expires) references SpotifyUser(access_token, refresh_token, expires)
 );
-
-alter table UserContext auto_increment=100;
